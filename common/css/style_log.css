@@ -1,0 +1,27 @@
+body {
+    background: url(../images/bg.jpg) repeat;
+}
+.login_m {
+    position: relative;
+}
+.login_m .col-sm-4 {
+    background: #fefefe;
+    box-shadow: 1px 1px 1px 1px #eee;
+    border: 1px solid #eee;
+    padding: 10px 30px;
+    border-radius: 10px;
+}
+
+.login_logo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.forget_model_h2 {
+    color: #4f5d80;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 11px;
+}
+.login_boder input.txt_input2 {
+    margin-bottom: 20px;
+}

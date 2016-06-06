@@ -1,0 +1,212 @@
+<div class="content">
+    <div class="row">
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <input type="input" class="form-control" placeholder="姓名" ng-model="name"/>
+            </p>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <input type="input" class="form-control" placeholder="律所" ng-model="firm"/>
+            </p>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <select ng-model="province" class="form-control">
+                    <option value="">请选择省份</option>
+                    <option ng-repeat="item in provinceData">{{item.name}}</option>
+                </select>
+            </p>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <select class="form-control major" ng-model="position">
+                    <option value="" selected="selected">请选择职位</option>
+                    <option value="律师">律师</option>
+                    <option value="合伙人">合伙人</option>
+                    <option value="管理合伙人">管理合伙人</option>
+                    <option value="主任">主任</option>
+                </select>
+            </p>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <div class="form-group">
+                <p>
+                    <select class="form-control" ng-model="judicial_type">
+                        <option value="">请选择从业信息</option>
+                        <option value="法院">法院</option>
+                        <option value="检察院">检察院</option>
+                        <option value="公安">公安</option>
+                        <option value="没有">没有</option>
+                    </select>
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-xs-6 pull-right text-right">
+            <button class="btn btn-primary btn-sm" ng-click="statusChange()">点击搜索</button>
+        </div>
+    </div>
+    <div class="row" ng-if="judicial_type=='法院'">
+        <div class="col-lg-4 col-xs-6">
+            <input type="text" class="form-control court" ng-model="court" ng-click="showList()" placeholder="法院名称"/>
+            <div class="resultList">
+                <input type="text" class="form-control search" ng-model="searchVal" select-court/><span
+                    class=" pull-right glyphicon glyphicon-search"
+                    style="margin-right: 10px; margin-top: -25px"></span>
+                <ul>
+                    <li ng-if="searchData=='' || searchData==undefined" style="background: #f2e2c0">
+                        没有查找到相关信息
+                    </li>
+                    <li ng-repeat="item in searchData" ng-click="changeVal(item.name)"><a
+                            href="javascript:;">{{item.name}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <select class="form-control sex" ng-model="case_type">
+                    <option value="" selected="selected">审理案件类型</option>
+                    <option value="民商事">民商事</option>
+                    <option value="知识产权">知识产权</option>
+                    <option value="刑事">刑事</option>
+                    <option value="行政">行政</option>
+                    <option value="其他">其他</option>
+                </select>
+            </p>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <select class="form-control sex" ng-model="job_duty">
+                    <option value="" selected="selected">职务</option>
+                    <option value="院长">院长</option>
+                    <option value="副院长">副院长</option>
+                    <option value="庭长">庭长</option>
+                    <option value="副庭长">副庭长</option>
+                    <option value="审判长">审判长</option>
+                    <option value="审判员">审判员</option>
+                    <option value="助理审判员">助理审判员</option>
+                    <option value="书记员">书记员</option>
+                    <option value="其他">其他</option>
+                </select>
+            </p>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <select class="form-control sex" ng-model="court_level">
+                    <option value="" selected="selected">院级</option>
+                    <option value="最高院">最高院</option>
+                    <option value="高级法院">高级法院</option>
+                    <option value="中级法院">中级法院</option>
+                    <option value="基层法院">基层法院</option>
+                </select>
+            </p>
+        </div>
+    </div>
+    <div class="row" ng-if="judicial_type=='检察院'">
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <input type="text" class="form-control" ng-model="procuratorate" placeholder="所在检察院">
+            </p>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <select class="form-control sex" ng-model="job_duty">
+                    <option value="" selected="selected">职务</option>
+                    <option value="检察长">检察长</option>
+                    <option value="副检察长">副检察长</option>
+                    <option value="处长/局长/主任">处长/局长/主任</option>
+                    <option value="副处长/副局长/副主任">副处长/副局长/副主任</option>
+                    <option value="检察员">检察员</option>
+                    <option value="助理检察员">助理检察员</option>
+                    <option value="书记员">书记员</option>
+                    <option value="其他">其他</option>
+                </select>
+            </p>
+        </div>
+    </div>
+    <div class="row" ng-if="judicial_type=='公安'">
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <input type="text" class="form-control" ng-model="police" placeholder="单位名称">
+            </p>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <p>
+                <select class="form-control sex" ng-model="job_duty">
+                    <option value="" selected="selected">行政级别</option>
+                    <option value="科级">科级</option>
+                    <option value="处级">处级</option>
+                    <option value="厅局级">厅局级</option>
+                    <option value="部级">部级</option>
+                    <option value="其他">其他</option>
+                </select>
+            </p>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <!--查询失败显示查询失败提示信息-->
+        <div class="container">
+            <div class="no_info" ng-if="result.length == 0">
+                暂无信息
+            </div>
+        </div>
+
+        <!-- 循环显示数据 -->
+        <div class="col-lg-4 col-xs-6" ng-repeat="info in result">
+            <div class="box box-solid bg-whate-gradient">
+                <div class="box-header">
+                    <div class="pull-right box-tools lawyerInfo">
+                        <!--单击传递lid-->
+                        <!--判断收藏状态,如果收藏过,那么是显示glyphicon glyphicon-star, 使用ng-if判断显示-->
+                        <span ng-if="info.collection_id != ''">
+                        <i class="fa fa-star" style="cursor: pointer; color: #ffb70a" id="{{info.id}}"
+                           collection="{{info.collection_id}}" cancelcollection-or-collection></i>
+                        </span>
+                        <span ng-if="info.collection_id == ''">
+                        <i class="fa fa-star-o" style="cursor: pointer;" id="{{info.id}}"
+                           collection="{{info.collection_id}}" cancelcollection-or-collection></i>
+                        </span>
+                        <i class="glyphicon glyphicon-remove" ng-click="deleteLawyer(info.id)"
+                           style="cursor: pointer"></i>
+                    </div>
+                </div>
+                <a href="#/lawyerInfo/{{info.id}}" style="color: #333">
+                    <div class="box-body border-radius-none">
+                        <div class="small-box">
+                            <div class="inner">
+                                <p class="borderBottom">
+                                    <span style="font-size: 20px;"> {{info.name}}</span>
+                                </p>
+                                <p style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span
+                                        class="glyphicon glyphicon-home"></span> {{info.firm}}</p>
+                                <p><span class="glyphicon glyphicon-phone"></span> {{info.phone}} </p>
+                            </div>
+                            <!--<div class="icon" style="top: 0px">-->
+                            <!--&lt;!&ndash;这里使用angularjs的表达式判断&ndash;&gt;-->
+                            <!--<i class="fa fa-user"></i>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <!--分页-->
+            <table>
+                <tr>
+                    <td>
+                        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm"
+                                    boundary-links="true" rotate="false" num-pages="numPages"
+                                    ng-change="pageChanged(bigCurrentPage)"></pagination>
+                    </td>
+                    <td>
+                        &nbsp;&nbsp; 总共: <span class="text-primary">{{bigTotalItems}}</span> 条
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

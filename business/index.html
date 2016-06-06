@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html ng-app="beyond">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>帮瀛大数据 | 律师</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../common/images/favicon.ico" type="image/x-icon"/>
+    <link rel="BOOKMARK" href="../common/images/favicon.ico" type="image/x-icon"/>
+
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css"/>
+    <!--bootstrap图标扩展库-->
+    <link rel="stylesheet" href="../vendor/bootstrap/css/font-awesome.min.css"/>
+
+    <!-- 界面样式css -->
+    <link rel="stylesheet" href="../common/css/AdminLTE.css"/>
+    <link rel="stylesheet" href="../common/css/_all-skins.css"/>
+
+    <!-- select2输入查找 -->
+    <link rel="stylesheet" href="../common/css/common.css" />
+    <!--[if lt IE 9]
+    <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+    <!--<![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper" ng-controller="commonCtrl">
+    <!--头部导航-->
+    <header class="main-header">
+        <a href="#/" class="logo">
+            <span>帮瀛大数据</span>
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!--<a class="sidebar-toggle" data-toggle="offcanvas" role="button">-->
+            <!--<span class="sr-only">Toggle navigation</span>-->
+            <!--</a>-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown notifications-menu">
+                        <a href="#/main">律师匹配</a>
+                    </li>
+                    <li class="dropdown notifications-menu">
+                        <a href="#/allLawyer">全部律师</a>
+                    </li>
+                    <li class="dropdown notifications-menu">
+                        <a href="#/addLawyer">添加律师</a>
+                    </li>
+                    <li class="dropdown notifications-menu">
+                        <a href="#/favorites">我的收藏</a>
+                    </li>
+                    <li class="dropdown notifications-menu">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            {{name}} <span style="font-size: 10px;">▽</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header" data-toggle="modal" data-target="#edit" data-dismiss="modal"
+                                style="cursor: pointer">修改密码
+                            </li>
+                            <!--修改密码-->
+                            <li class="header" ng-click="out()" style="cursor: pointer">退出登录</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--头部导航结束-->
+
+    <!-- 修改密码 -->
+    <form>
+        <div class="modal fade text-left" id="edit" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            <button type="button" class="close"
+                                    data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4>修改密码</h4>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>原密码</label>
+                            <input type="password" class="form-control" ng-model="old_pass"/>
+                        </div>
+                        <div class="form-group">
+                            <label>新密码</label>
+                            <input type="password" class="form-control" ng-model="new_pass"/>
+                        </div>
+                        <div class="form-group">
+                            <label>再次输入新密码</label>
+                            <input type="password" class="form-control" ng-model="second_new_pass"/>
+                        </div>
+                        <button class="btn btn-primary" ng-click="editPass()" data-dismiss="modal">修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- 修改密码结束 -->
+
+    <!--正文内容开始-->
+    <div class="content-wrapper">
+        <div class="container">
+            <!--这里加载路由控制的界面片段-->
+            <div ng-view>
+
+            </div>
+        </div>
+    </div>
+    <div class="control-sidebar-bg"></div>
+    <!--正文内容结束-->
+</div>
+<script src="../vendor/jquery/jquery-1.11.1.min.js"></script>
+<script src="../vendor/jquery/jquery-ui.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--加载angularJS-->
+<script src="../vendor/angularJS/angular-1.4.8.js"></script>
+
+<!--提取公用的一些js文件-->
+<script type="text/javascript" src="../common/js/common.js"></script>
+<!--自定义服务和指令-->
+<script type="text/javascript" src="../common/js/service.js"></script>
+<script type="text/javascript" src="../common/js/directive.js"></script>
+<!--angularjs自带路由控制,不能嵌套-->
+<script src="../vendor/angularJS/angular-route.min.js"></script>
+
+<!--可嵌套的路由js-->
+<script src="../vendor/angularJS/ui-router.js"></script>
+
+<!--文件上传插件-->
+<script src="../vendor/angularJS/ng-file-upload.min.js"></script>
+<script src="../vendor/angularJS/ng-file-upload-shim.min.js"></script>
+
+<!--分页插件-->
+<script type="text/javascript" src="../vendor/angularJS/ui-bootstrap-tpls.js"></script>
+
+<!--我的控制器js-->
+<script src="js/business.js"></script>
+
+<!--app.js加载界面全屏显示-->
+<!--<script src="../vendor/lte/app.min.js"></script>-->
+</body>
+</html>

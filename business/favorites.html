@@ -1,0 +1,68 @@
+<div class="content">
+    <div class="row">
+        <!--查询失败显示查询失败提示信息-->
+        <div class="container">
+            <div class="no_info" ng-if="result.length == 0">
+                暂无信息
+            </div>
+        </div>
+        <!-- 循环显示数据 -->
+        <div class="col-lg-4 col-xs-6" ng-repeat="info in result">
+            <div class="box box-solid bg-whate-gradient">
+                <div class="box-header">
+                    <div class="pull-right box-tools lawyerInfo">
+                        <!--单击传递lid-->
+                        <!--判断收藏状态,如果收藏过,那么是显示glyphicon glyphicon-star, 使用ng-if判断显示-->
+                        <span ng-if="info.collection_id != ''">
+                        <i class="fa fa-star" style="cursor: pointer; color: #ffb70a" id="{{info.id}}"
+                           collection="{{info.collection_id}}" cancelcollection-or-collection></i>
+                        </span>
+                        <span ng-if="info.collection_id == ''">
+                        <i class="fa fa-star-o" style="cursor: pointer;" id="{{info.id}}"
+                           collection="{{info.collection_id}}" cancelcollection-or-collection></i>
+                        </span>
+                        &nbsp;
+                        <i class="glyphicon glyphicon-remove" ng-click="deleteLawyer(info.lid)"
+                           style="cursor: pointer"></i>
+                    </div>
+                </div>
+                <a href="#/lawyerInfo/1" style="color: #333">
+                    <div class="box-body border-radius-none">
+                        <div class="small-box">
+                            <div class="inner">
+                                <p class="borderBottom">
+                                    <span style="font-size: 20px;"> {{info.name}}</span>
+                                </p>
+                                <p style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span
+                                        class="glyphicon glyphicon-home"></span> {{info.firm}}</p>
+                                <p><span class="glyphicon glyphicon-phone"></span> {{info.phone}} </p>
+                            </div>
+                            <!--<div class="icon" style="top: 0px">-->
+                            <!--&lt;!&ndash;这里使用angularjs的表达式判断&ndash;&gt;-->
+                            <!--<i class="fa fa-user"></i>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <!--分页-->
+            <table>
+                <tr>
+                    <td>
+                        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize"
+                                    class="pagination-sm"
+                                    boundary-links="true" rotate="false" num-pages="numPages"
+                                    ng-change="pageChanged(bigCurrentPage)"></pagination>
+                    </td>
+                    <td>
+                        &nbsp;&nbsp; 总共: <span class="text-primary">{{bigTotalItems}}</span> 条
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

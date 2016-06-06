@@ -1,0 +1,792 @@
+<section class="content">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+            <div class="panel panel-default"
+                 style="background: url(../common/images/userBg.jpg) left top no-repeat; background-color: #fff">
+                <div class="panel-body" style="padding: 30px; padding-top: 0px;">
+                    <div class="row text-center">
+                        <div class="col-xs-12">
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div>
+                                <!--<div class="btn btn-default" ngf-select ng-model="file" ngf-max-size="20MB">请选择文件</div>-->
+                                <div>
+                                    <p>
+                                        <img src="{{files.url}}" class="img-circle" ngf-select ng-model="file"
+                                             ng-change="uploadUser()"
+                                             ngf-max-size="20MB"
+                                             style="position: relative; width: 100px; height: 100px; border: 2px solid #eee;"/>
+                                    </p>
+                                    <p class="progress-striped text-primary" style="display: none;">正在上传请稍后......</p>
+                                    <p style="margin-bottom: 0px">{{file.name}}</p>
+
+                                </div>
+                                <!--修改基本信息-->
+                        <span class="pull-right glyphicon glyphicon-edit text-primary" title="修改"
+                              style="cursor: pointer"
+                              data-toggle="modal"
+                              data-target="#editBaseinfo" ng-click="city()"></span>
+                            </div>
+
+                            <p style="font-size: 16px;">
+                                <b style="font-size: 24px">{{lawyer.name}}</b>
+                                <span style="margin: 0px 10px"></span>
+                                <b>{{lawyer.sex}}</b>
+                                <span style="margin: 0px 10px"></span>
+                                <b>{{lawyer.birth}} <span ng-show="lawyer.birth != undefined">年生</span></b>
+                            </p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>
+                                <b class="fa fa-map-marker"> {{lawyer.province}}</b>
+                                <span style="margin: 0px 5px"></span>
+                                <span>{{lawyer.city}}</span>
+                                <span style="margin: 0px 5px"></span>
+                                <span>{{lawyer.address}}</span>
+                                <span style="margin: 0px 5px"></span>
+                                <span class="fa fa-phone"> {{lawyer.phone}}</span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p></p>
+                            <p style="border-bottom: 1px solid #ddd; margin-bottom: 30px;"><span
+                                    style="background: #ddd; padding: 5px 15px; position: relative; top: 10px; border-radius: 10px">执业信息</span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12 text-left">
+                            <p>
+                                <b class="fa fa-building-o"> {{lawyer.firm}}</b>
+                                <span style="margin: 0px 10px"></span>
+                                <span> {{lawyer.position}}</span>
+                                <span style="margin: 0px 10px"></span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12 text-left">
+                            <p>
+                                <b style="margin-right: 5px">执业证编号:</b> {{lawyer.license_number}}
+                                <span style="margin: 0px 10px"></span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p></p>
+                            <p style="border-bottom: 1px solid #ddd; margin-bottom: 30px;"><span
+                                    style="background: #ddd; padding: 5px 15px; position: relative; top: 10px; border-radius: 10px">擅长领域</span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12 text-left">
+                            <p>
+                                <b style="margin-right: 5px">擅长领域:</b>{{lawyer.practice_area}}
+                                <span style="margin: 0px 10px"></span>
+                                <b style="margin-right: 5px">年均创收(近三年):</b> {{lawyer.income}}
+                                <span style="margin: 0px 10px"></span>
+                                <b style="margin-right: 5px">所带团队规模 :</b>{{lawyer.team_scale}}
+
+                            </p>
+                        </div>
+                        <div class="col-xs-12 text-left">
+                            <p>
+                                <b style="margin-right: 5px">是否承办过行政案件: </b> {{lawyer.admin_case}}
+                                <span style="margin: 0px 10px"></span>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-12 text-center">
+                            <p style="border-bottom: 1px solid #ddd; margin-bottom: 30px;"><span
+                                    style="background: #ddd; padding: 5px 15px; position: relative; top: 10px; border-radius: 10px">其他信息</span>
+
+                            </p>
+                        </div>
+                        <div class="col-xs-12 text-left">
+                            <p>
+                                <b style="margin-right: 5px">毕业院校: </b>{{lawyer.school}}
+                                <span style="margin: 0px 10px"></span>
+                                <b style="margin-right: 5px">是否为渠道律师: </b> {{lawyer.is_middle}}
+                            </p>
+                            <p>
+                                <b style="margin-right: 5px">备注: </b> {{lawyer.remarks}}
+                            </p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p style="border-bottom: 1px solid #ddd; margin-bottom: 30px;"><span
+                                    style="background: #ddd; padding: 5px 15px; position: relative; top: 10px; border-radius: 10px">公检法从业信息</span>
+
+                            </p>
+                        </div>
+                    </div>
+                    <!--法院-->
+                    <div class="row" ng-if="lawyer.judicial_type=='法院'">
+                        <div class="col-xs-12">
+                            <p>
+                                <b style="margin-right: 5px" class="fa fa-building-o"> {{lawyer_court.court}}</b>
+                                <span style="margin: 0px 10px"></span>
+                                <b style="margin-right: 5px" class="fa fa-calendar pull-right">
+                                    {{lawyer_court.start_time}}--{{lawyer_court.end_time}}</b>
+                                <span style="margin: 0px 10px"></span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>
+                                <b style="margin-right: 5px"> 职位: </b>
+                                {{lawyer_court.case_type}}
+                                <span style="margin: 0px 10px"></span>
+                                <b style="margin-right: 5px">审理案件类型: </b>{{lawyer_court.job_duty}}
+                                <span style="margin: 0px 10px"></span>
+                                <b style="margin-right: 5px">院级: </b>
+                                {{lawyer_court.court_level}}
+                            </p>
+                        </div>
+                    </div>
+                    <!--检察院-->
+                    <div class="row" ng-if="lawyer.judicial_type=='检察院'">
+                        <div class="col-xs-12">
+                            <p>
+                                <b style="margin-right: 5px" class="fa fa-building-o">
+                                    {{lawyer_procuratorate.procuratorate}}</b>
+                                <span style="margin: 0px 10px"></span>
+                                <b style="margin-right: 5px" class="fa fa-calendar pull-right">
+                                    {{lawyer_procuratorate.start_time}}--{{lawyer_procuratorate.end_time}}</b>
+                                <span style="margin: 0px 10px"></span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>
+                                <b style="margin-right: 5px"> 职位: </b>
+                                {{lawyer_procuratorate.job_duty}}
+                            </p>
+                        </div>
+                    </div>
+                    <!--公安-->
+                    <div class="row" ng-if="lawyer.judicial_type=='公安'">
+                        <div class="col-xs-12">
+                            <p>
+                                <b style="margin-right: 5px" class="fa fa-building-o">{{lawyer_police.police}}</b>
+                                <span style="margin: 0px 10px"></span>
+                                <b style="margin-right: 5px" class="fa fa-calendar pull-right">
+                                    {{lawyer_police.start_time}}--{{lawyer_police.end_time}}</b>
+                                <span style="margin: 0px 10px"></span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>
+                                <b style="margin-right: 5px"> 职位: </b>
+                                {{lawyer_police.level}}
+                            </p>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--修改信息-->
+<div class="modal fade" id="editBaseinfo" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <blockquote style="border-left-color: #3c8dbc; padding: 5px 20px">基本信息</blockquote>
+                <form role="form">
+                    <div class="form-group">
+                        <label>名字</label> <span class="red">*</span>
+                        <input type="text" class="form-control" ng-model="lawyer.name"/>
+                    </div>
+                    <div class="form-group">
+                        <label>手机号</label> <span class="red">* {{phoneMessage}}</span>
+                        <input type="text" class="form-control" ng-model="lawyer.phone" check-phone/>
+                    </div>
+                    <div class="form-group">
+                        <label>出生年份</label> <span class="red">*</span>
+                        <select class="form-control" ng-model="lawyer.birth" get-birth-year>
+                            <option ng-repeat="item in birthYearList">{{item.year}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>性别</label> <span class="red">*</span>
+                        <select class="form-control" ng-model="lawyer.sex">
+                            <option value="" selected="selected">请选择性别</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <!--<div class="form-group">-->
+                    <!--<label>国家</label>-->
+                    <!--<input type="text" class="form-control" ng-model="country">-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label>省份</label> <span class="red">*</span>
+                        <p>
+                            <select class="form-control" ng-model="province">
+                                <option ng-repeat="info in provinceData">{{info.name}}</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label>城市</label> <span class="red">*</span>
+                        <select class="form-control" ng-model="city">
+                            <option ng-if="province=='北京'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[0].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='天津'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[1].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='河北'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[2].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='山西'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[3].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='内蒙古'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[4].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='辽宁'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[5].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='吉林'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[6].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='黑龙江'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[7].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='上海'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[8].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='江苏'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[9].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='浙江'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[10].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='安徽'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[11].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='福建'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[12].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='江西'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[13].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='山东'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[14].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='河南'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[15].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='湖北'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[16].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='湖南'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[17].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='广东'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[18].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='广西'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[19].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='海南'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[20].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='重庆'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[21].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='四川'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[22].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='贵州'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[23].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='云南'"
+                                    ng-repeat="info in provinceData[24].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='西藏'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[25].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='陕西'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[26].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='甘肃'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[27].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='青海'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[28].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='宁夏'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[29].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='新疆'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[30].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='香港'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[31].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                            <option ng-if="province=='澳门'"
+                                    ng-selected="info[0]"
+                                    ng-repeat="info in provinceData[32].cities track by $index"
+                                    value="{{info}}">{{info}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>联系地址</label> <span class="red">*</span>
+                        <input type="text" class="form-control" ng-model="lawyer.address">
+                    </div>
+                    <div class="form-group">
+                        <label>毕业院校</label>
+                        <input type="text" class="form-control" ng-model="lawyer.school">
+                    </div>
+                    <div class="form-group">
+                        <label>所在律所</label> <span class="red">*</span>
+                        <input type="text" class="form-control" ng-model="lawyer.firm">
+                    </div>
+                    <div class="form-group">
+                        <label>职位</label> <span class="red">*</span>
+                        <select class="form-control" ng-model="lawyer.position">
+                            <option value="律师">律师</option>
+                            <option value="合伙人">合伙人</option>
+                            <option value="管理合伙人">管理合伙人</option>
+                            <option value="主任">主任</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>职业证编号</label> <span class="red">*</span>
+                        <input type="text" class="form-control" ng-model="lawyer.license_number"/>
+                    </div>
+                    <div class="form-group">
+                        <label>擅长领域</label> <span class="red">*</span>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>
+                                    <select class="form-control" id="linkage" ng-model="lawyer.practice_area">
+                                        <option value="" selected="selected">请选择擅长领域</option>
+                                        <option value="民商事">民商事</option>
+                                        <option value="知识产权">知识产权</option>
+                                        <option value="刑事">刑事</option>
+                                    </select>
+                                </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p style="margin-bottom: 0; margin-top: 8px;">
+                                    <label>承办过行政案件</label> <span class="red">*</span>
+                                    <input type="checkbox" ng-checked="true" ng-model="lawyer.admin_case"/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>年均创收(近三年)</label> <span class="red">*</span>
+                        <p>
+                            <select class="form-control" ng-model="lawyer.income">
+                                <option value="" selected="selected">请选择</option>
+                                <option value="100万以内">100万以内</option>
+                                <option value="100万-500万">100万-500万</option>
+                                <option value="500万-1000万">500万-1000万</option>
+                                <option value="1000万以上">1000万以上</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label>所带团队规模</label> <span class="red">*</span>
+                        <p>
+                            <select class="form-control" ng-model="lawyer.team_scale">
+                                <option value="无">无</option>
+                                <option value="5人以下">5人以下</option>
+                                <option value="5-10人">5-10人</option>
+                                <option value="10人以上">10人以上</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="from-group">
+                        <label>备注</label>
+                        <p>
+                                <textarea class="remark form-control" ng-model="lawyer.remarks" rows="4"
+                                          placeholder="其他优势, 如承办过的重要案件, 相关人脉与资源等"></textarea>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label>是否为渠道律师</label> <span class="red">*</span>
+                        <p>
+                            <select class="form-control" ng-model="lawyer.is_middle">
+                                <option value="" selected="selected">请选择</option>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </p>
+                    </div>
+
+                    <!--公检法-->
+                    <blockquote style="border-left-color: #3c8dbc; padding: 5px 20px">公检法从业经历</blockquote>
+                    <div class="form-group">
+                        <label>公检法从业经历</label> <span class="red">*</span>
+                        <p>
+                            <select class="form-control" ng-model="lawyer.judicial_type">
+                                <option value="法院">法院</option>
+                                <option value="检察院">检察院</option>
+                                <option value="公安">公安</option>
+                                <option value="没有">没有</option>
+                            </select>
+                        </p>
+                    </div>
+                    <!-- 法院 -->
+                    <div class="one" ng-show="lawyer.judicial_type=='法院'">
+                        <div class="form-group">
+                            <label>所在法院</label> <span class="red">*</span>
+                            <input type="text" class="form-control court" ng-model="court" ng-click="showList()"/>
+                            <div class="resultList">
+                                <input type="text" class="form-control search" ng-model="searchVal"
+                                       select-court/><span
+                                    class=" pull-right glyphicon glyphicon-search"
+                                    style="margin-right: 10px; margin-top: -25px"></span>
+                                <ul>
+                                    <li ng-if="searchData=='' || searchData==undefined" style="background: #f2e2c0">
+                                        没有查找到相关信息
+                                    </li>
+                                    <li ng-repeat="item in searchData" ng-click="changeVal(item.name)"><a
+                                            href="javascript:;">{{item.name}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>开始年月</label> <span class="red">*</span>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p>
+                                        <select class="form-control" ng-model="start_time_year" get-year>
+                                            <option value="" selected="selected">开始年份</option>
+                                            <option ng-repeat="item in yearList">{{item.year}}</option>
+                                        </select>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <select class="form-control" ng-model="start_time_month">
+                                        <option value="">开始月份</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>结束年月</label> <span class="red">*</span>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p>
+                                        <select class="form-control" ng-model="end_time_year" get-year>
+                                            <option value="" selected="selected">结束年份</option>
+                                            <option ng-repeat="item in yearList">{{item.year}}</option>
+                                        </select>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <select class="form-control" ng-model="end_time_month">
+                                        <option value="">结束月份</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>审理案件类型</label> <span class="red">*</span>
+                            <select class="form-control sex" ng-model="lawyer.case_type">
+                                <option value="" selected="selected">请选择</option>
+                                <option value="民商事">民商事</option>
+                                <option value="知识产权">知识产权</option>
+                                <option value="刑事">刑事</option>
+                                <option value="行政">行政</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>职务</label> <span class="red">*</span>
+                            <select class="form-control sex" ng-model="lawyer.job_duty">
+                                <option value="" selected="selected">请选择</option>
+                                <option value="院长">院长</option>
+                                <option value="副院长">副院长</option>
+                                <option value="庭长">庭长</option>
+                                <option value="副庭长">副庭长</option>
+                                <option value="审判长">审判长</option>
+                                <option value="审判员">审判员</option>
+                                <option value="助理审判员">助理审判员</option>
+                                <option value="书记员">书记员</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>院级</label> <span class="red">*</span>
+                            <select class="form-control sex" ng-model="lawyer.court_level">
+                                <option value="" selected="selected">请选择</option>
+                                <option value="最高院">最高院</option>
+                                <option value="高级法院">高级法院</option>
+                                <option value="中级法院">中级法院</option>
+                                <option value="基层法院">基层法院</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 检察院 -->
+                    <div class="two" ng-show="lawyer.judicial_type=='检察院'">
+                        <div class="form-group">
+                            <label>所在检察院</label> <span class="red">*</span>
+                            <input type="text" class="form-control" ng-model="lawyer.procuratorate">
+                        </div>
+                        <div class="form-group">
+                            <label>开始年月</label> <span class="red">*</span>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p>
+                                        <select class="form-control" ng-model="start_time_year" get-year>
+                                            <option value="" selected="selected">开始年份</option>
+                                            <option ng-repeat="item in yearList">{{item.year}}</option>
+                                        </select>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <select class="form-control" ng-model="start_time_month">
+                                        <option value="">开始月份</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>结束年月</label> <span class="red">*</span>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p>
+                                        <select class="form-control" ng-model="end_time_year" get-year>
+                                            <option value="" selected="selected">结束年份</option>
+                                            <option ng-repeat="item in yearList">{{item.year}}</option>
+                                        </select>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <select class="form-control" ng-model="end_time_month">
+                                        <option value="">结束月份</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>职务</label> <span class="red">*</span>
+                            <select class="form-control sex" ng-model="lawyer.job_duty">
+                                <option value="" selected="selected">请选择</option>
+                                <option value="检察长">检察长</option>
+                                <option value="副检察长">副检察长</option>
+                                <option value="处长/局长/主任">处长/局长/主任</option>
+                                <option value="副处长/副局长/副主任">副处长/副局长/副主任</option>
+                                <option value="检察员">检察员</option>
+                                <option value="助理检察员">助理检察员</option>
+                                <option value="书记员">书记员</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 公安 -->
+                    <div class="three" ng-show="lawyer.judicial_type=='公安'">
+                        <div class="form-group">
+                            <label>单位名称</label> <span class="red">*</span>
+                            <input type="text" class="form-control" ng-model="lawyer.police">
+                        </div>
+                        <div class="form-group">
+                            <label>开始年月</label> <span class="red">*</span>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p>
+                                        <select class="form-control" ng-model="start_time_year" get-year>
+                                            <option value="" selected="selected">开始年份</option>
+                                            <option ng-repeat="item in yearList">{{item.year}}</option>
+                                        </select>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <select class="form-control" ng-model="start_time_month">
+                                        <option value="">开始月份</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>结束年月</label> <span class="red">*</span>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p>
+                                        <select class="form-control" ng-model="end_time_year" get-year>
+                                            <option value="" selected="selected">结束年份</option>
+                                            <option ng-repeat="item in yearList">{{item.year}}</option>
+                                        </select>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <select class="form-control" ng-model="end_time_month">
+                                        <option value="">结束月份</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>行政级别</label> <span class="red">*</span>
+                            <select class="form-control sex" ng-model="lawyer.job_duty">
+                                <option value="" selected="selected">请选择</option>
+                                <option value="科级">科级</option>
+                                <option value="处级">处级</option>
+                                <option value="厅局级">厅局级</option>
+                                <option value="部级">部级</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span style="color: red" class="pull-left">{{warnMessage}}</span>
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="editLawyer(lawyer.id)">
+                    修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="content">
+    <div class="panel">
+        <div class="panel-body">
+            <p class="glyphicon glyphicon-open" style="margin-bottom: 20px;"><span
+                    style="margin-left: 5px;">导入律师信息</span></p>
+            <form name="form">
+                <div class="btn btn-default" ngf-select ng-model="file" ngf-max-size="20MB">请选择文件</div>
+                <span style="margin-right: 20px;">{{file.name}}</span>
+                <button class="btn btn-primary" id="btn" type="submit" ng-click="submit()">提交</button>
+            </form>
+            <div class="error_table">
+                <p style="margin-top: 10px">成功:<span style="color: red">{{success_num}}</span>条 失败:<span
+                        style="color: red">{{failed_num}}</span>条</p>
+                <p class="glyphicon glyphicon-info-sign" style="margin-bottom: 20px;"><span
+                        style="margin-left: 5px;">错误信息列表</span></p>
+                <!--错误信息-->
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                    <tr class="info">
+                        <td>错误行号</td>
+                        <td>错误信息</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="info in error">
+                        <td>{{info.error_row}}</td>
+                        <td style="color: red">{{info.message}}</td>
+                        <td><a href="#/lawyerInfo/{{info.exist_client_id}}" target="_blank">{{info.exist_client_id ?
+                            "查看详情" : ""}}</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#btn").click(function () {
+            $(".error_table").show();
+        });
+    })
+</script>
